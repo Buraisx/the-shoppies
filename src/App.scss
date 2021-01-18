@@ -2,3 +2,13 @@
   text-align: center;
   background-color: #F5F6F8;
 }
+
+.disabled {
+  pointer-events: none;
+  background-color: #F5F6F8;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #F5F6F8;
+}

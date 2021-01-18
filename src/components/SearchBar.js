@@ -3,7 +3,7 @@ import React from 'react';
 const SearchBar = ({queryTerm, term}) => {
 
   return (
-    <section>
+    <section className="card">
       <form>
         <label htmlFor="search-term">Movie title</label>
         <input
