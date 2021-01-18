@@ -4,6 +4,7 @@ import ResultsContainer from './components/ResultsContainer';
 import NominationsContainer from './components/NominationsContainer';
 
 import './App.scss';
+import Banner from './components/Banner';
 
 
 const App = () => {
@@ -12,7 +13,6 @@ const App = () => {
   );
   const [results, setResults] = useState([]);
   const [term, setTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
 
   /**
@@ -23,7 +23,6 @@ const App = () => {
     setTerm(searchTerm);
     // only search if an input exists
     if(searchTerm.length > 0) {
-      setIsLoading(true);
       const response = await fetch(`http://www.omdbapi.com/?s=${term}&apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&page=1`);
       const data = await response.json();
       
@@ -65,6 +64,8 @@ const App = () => {
 
   return (
     <main className="container">
+      
+      <Banner nominations={nominations}/>
       <h1>The Shoppies</h1>
       <SearchBar
         queryTerm={queryTerm}

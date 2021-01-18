@@ -8,12 +8,12 @@ import React from 'react';
 const ResultsContainer = ({ results, term, addNomination, nominations}) => {
 
   return (
-    <section className="card">
+    <section className="card results">
       <h2>{term.length > 0 ? `Results for "${term}"`: " Search Results"}</h2>
-      <ul>
+      <ul className="card__list">
         {
           results.map((movie) => (
-            <li key={movie.imdbID}>{`${movie.Title} (${movie.Year})`}
+            <li className="card__list-item" key={movie.imdbID}>{`${movie.Title} (${movie.Year})`}
               <button 
                 onClick={() => addNomination(movie)}
                 className={movie.imdbID in nominations ? "disabled" : ""}

@@ -8,7 +8,7 @@ import React from 'react';
 const SearchBar = ({queryTerm, term}) => {
 
   return (
-    <section className="card">
+    <section className="card search-bar">
       <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="search-term">Movie title</label>
         <input
@@ -16,6 +16,8 @@ const SearchBar = ({queryTerm, term}) => {
           name="search-term"
           value={term}
           type="text"
+          className="search-bar__input"
+          placeholder="Please enter a title"
           onChange={e => queryTerm(e.target.value)}
         />
       </form>
