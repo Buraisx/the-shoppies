@@ -6,8 +6,6 @@ import React from 'react';
  * @param {function} changeNomination
  */
 const NominationsContainer = ({ nominations, removeNomination }) => {
-  console.log(nominations)
-
   return (
     <section className="card">
       <h2>Nominations</h2>

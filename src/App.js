@@ -7,7 +7,9 @@ import './App.scss';
 
 
 const App = () => {
-  const [nominations, setNominations] = useState({});
+  const [nominations, setNominations] = useState(
+    JSON.parse(localStorage.getItem('nominations')) || {}
+  );
   const [results, setResults] = useState([]);
   const [term, setTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +29,11 @@ const App = () => {
       
       if(data["Response"] === "True") {
         setResults(data["Search"]);
-        console.log(results);
       }
 
     }
   }
+  
   /**
    * Adds a movie to the nominations list
    * @param {Object} nomination 
@@ -39,12 +41,10 @@ const App = () => {
   const addNomination = (movie) => {
     // check if nomination exists in the nomination list first
     if (!(movie.imdbID in nominations)) {
-      setNominations(
-        { 
-          ...nominations,
-          [movie.imdbID]: movie
-        }
-      );
+      setNominations({ 
+        ...nominations,
+        [movie.imdbID]: {...movie, enumerable: true }
+      });
     }
   }
 
@@ -57,15 +57,14 @@ const App = () => {
     delete newNominations[nominationId];
     setNominations({...newNominations});
   }
-  // useEffect(()=> {
-  //   (async () => {
-  //     const response = await fetch(`http://www.omdbapi.com/?s=${term}&apikey=2b3a969f&type=movie&page=1`);
-  //     const data = await response.json();
-  //     console.log(data);
-  //   })();
-  // }, [term]);
+
+  // Save nominations to local storage everytime its updated
+  useEffect(() => {
+    localStorage.setItem('nominations', JSON.stringify(nominations));
+  }, [nominations]);
+
   return (
-    <main className="App">
+    <main className="container">
       <h1>The Shoppies</h1>
       <SearchBar
         queryTerm={queryTerm}
