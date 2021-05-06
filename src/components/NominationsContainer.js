@@ -1,9 +1,12 @@
 import React from 'react';
+
 /**
- * 
+ * Nominations component
+ * contains list of nominated movies
  * @param {array} results
  * @param {string} term
  * @param {function} changeNomination
+ *s
  */
 const NominationsContainer = ({ nominations, removeNomination }) => {
   return (

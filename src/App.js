@@ -13,7 +13,7 @@ const App = () => {
   );
   const [results, setResults] = useState([]);
   const [term, setTerm] = useState('');
-
+  const [isLoading, setLoading] = useState(false);
 
   /**
    * Queries the term entered in the search bar
@@ -23,9 +23,10 @@ const App = () => {
     setTerm(searchTerm);
     // only search if an input exists
     if(searchTerm.length > 0) {
+      setLoading(true);
       const response = await fetch(`http://www.omdbapi.com/?s=${term}&apikey=${process.env.REACT_APP_OMDB_API_KEY}&type=movie&page=1`);
       const data = await response.json();
-      
+      setLoading(false);
       if(data["Response"] === "True") {
         setResults(data["Search"]);
       }
@@ -76,6 +77,7 @@ const App = () => {
         term={term}
         addNomination={addNomination}
         nominations={nominations}
+        isLoading={isLoading}
       />
       <NominationsContainer
         nominations={nominations}

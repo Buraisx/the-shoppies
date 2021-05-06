@@ -1,15 +1,21 @@
 import React from 'react';
+
 /**
  * 
+ * Search results component
+ * Displays list of movies
  * @param {array} results
  * @param {string} term
  * @param {function} changeNomination
+ * 
  */
-const ResultsContainer = ({ results, term, addNomination, nominations}) => {
-
+const ResultsContainer = ({ results, term, addNomination, nominations, isLoading}) => {
   return (
     <section className="card results">
-      <h2>{term.length > 0 ? `Results for "${term}"`: " Search Results"}</h2>
+      <h2 className="card__title">{term.length > 0 ? `Results for "${term}"`: " Search Results"}</h2>
+      {
+        isLoading ? <div className="spinner"></div> : null
+      }
       <ul className="card__list">
         {
           results.map((movie) => (

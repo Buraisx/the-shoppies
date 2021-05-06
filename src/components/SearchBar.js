@@ -11,15 +11,18 @@ const SearchBar = ({queryTerm, term}) => {
     <section className="card search-bar">
       <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="search-term">Movie title</label>
-        <input
-          id="search-term"
-          name="search-term"
-          value={term}
-          type="text"
-          className="search-bar__input"
-          placeholder="Please enter a title"
-          onChange={e => queryTerm(e.target.value)}
-        />
+        <div className="search-bar__container">
+          <button type="submit" className="search-bar__submit"></button>
+          <input
+            id="search-term"
+            name="search-term"
+            value={term}
+            type="text"
+            className="search-bar__input"
+            placeholder="Please enter a title"
+            onChange={e => queryTerm(e.target.value)}
+          />
+        </div>
       </form>
     </section>
   );
